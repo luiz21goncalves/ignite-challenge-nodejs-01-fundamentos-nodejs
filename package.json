@@ -9,13 +9,16 @@
   "license": "MIT",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "node --watch src/server.js"
+    "dev": "node --watch src/server.js",
+    "lint": "eslint . --ext .js",
+    "lint:fix": "eslint . --ext .js --fix"
   },
   "dependencies": {
     "dotenv": "^16.0.3"
   },
   "devDependencies": {
     "@rocketseat/eslint-config": "^1.2.0",
-    "eslint": "^8.34.0"
+    "eslint": "^8.34.0",
+    "typescript": "^4.9.5"
   }
 }
