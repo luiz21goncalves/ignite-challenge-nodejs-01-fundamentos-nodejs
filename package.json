@@ -1,0 +1,12 @@
+{
+  "name": "ignite-challenge-nodejs-01-fundamentos-nodejs",
+  "version": "0.0.0",
+  "description": "Desafio 01 - API para realizar o CRUD de suas tasks",
+  "main": "index.js",
+  "keywords": [],
+  "author": "Luiz Gonçalves",
+  "license": "MIT",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
