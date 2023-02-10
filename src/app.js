@@ -18,7 +18,10 @@ const app = http.createServer(async (request, response) => {
     return route.handler(request, response)
   }
 
-  return response.writeHead(404).end()
+  return response
+    .setHeader('Content-type', 'application/json')
+    .writeHead(404)
+    .end()
 })
 
 export { app }
