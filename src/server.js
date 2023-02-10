@@ -1,10 +1,21 @@
 import dotenv from 'dotenv'
 import http from 'node:http'
+import { routes } from './routes.js'
 
 dotenv.config()
 
 const server = http.createServer((request, response) => {
-  return response.writeHead(200).end()
+  const { method, url } = request
+
+  const route = routes.find((route) => {
+    return route.method === method && route.path === url
+  })
+
+  if (route) {
+    return route.handler(request, response)
+  }
+
+  return response.writeHead(404).end()
 })
 
 server
