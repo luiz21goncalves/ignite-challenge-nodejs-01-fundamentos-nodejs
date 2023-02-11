@@ -18,6 +18,7 @@
     "dotenv": "^16.0.3"
   },
   "devDependencies": {
+    "@faker-js/faker": "^7.6.0",
     "@rocketseat/eslint-config": "^1.2.0",
     "@vitest/coverage-c8": "^0.28.4",
     "eslint": "^8.34.0",
