@@ -1,12 +1,12 @@
 import fs from 'node:fs/promises'
 
-const databasePath = new URL(process.env.DB_PATH, import.meta.url)
+import { ENV } from './constants/env'
 
 export class Database {
   #database = {}
 
   constructor() {
-    fs.readFile(databasePath, 'utf-8')
+    fs.readFile(ENV.DB_PATH, 'utf-8')
       .then((data) => {
         this.#database = JSON.parse(data)
       })
@@ -16,7 +16,7 @@ export class Database {
   }
 
   #persist() {
-    fs.writeFile(databasePath, JSON.stringify(this.#database))
+    fs.writeFile(ENV.DB_PATH, JSON.stringify(this.#database))
   }
 
   inset(table, data) {

@@ -1,12 +1,14 @@
 import { randomUUID } from 'node:crypto'
+
 import { Database } from './database.js'
+import { ROUTES } from './constants/routes'
 
 const database = new Database()
 
 export const routes = [
   {
     method: 'POST',
-    path: '/tasks',
+    path: ROUTES.TASK,
     handler: (request, response) => {
       const { title, description } = request.body
 
