@@ -1,4 +1,7 @@
 import { randomUUID } from 'node:crypto'
+import { Database } from './database.js'
+
+const database = new Database()
 
 export const routes = [
   {
@@ -16,7 +19,9 @@ export const routes = [
         updated_at: new Date(),
       }
 
-      return response.writeHead(201).end(JSON.stringify(task))
+      database.inset('tasks', task)
+
+      return response.writeHead(201).end()
     },
   },
 ]

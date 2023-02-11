@@ -16,13 +16,6 @@ describe('Create task', () => {
 
     expect(response.statusCode).toEqual(201)
     expect(response.header).toContain({ 'content-type': 'application/json' })
-    expect(response.body).toStrictEqual({
-      id: expect.any(String),
-      title,
-      description,
-      completed_at: null,
-      created_at: expect.any(String),
-      updated_at: expect.any(String),
-    })
+    expect(response.body).toStrictEqual('')
   })
 })
