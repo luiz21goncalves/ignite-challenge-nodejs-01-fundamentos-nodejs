@@ -6,5 +6,6 @@ export default defineConfig({
       reporter: ['lcov', 'text-summary'],
     },
     setupFiles: ['./vitest.setup.js'],
+    threads: false,
   },
 })
