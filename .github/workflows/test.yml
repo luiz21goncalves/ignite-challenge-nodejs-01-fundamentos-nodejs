@@ -26,7 +26,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-
 
-      - name: 🛠️ Setup Node and install project dependencies
+      - name: Setup Node and install project dependencies
         uses: actions/setup-node@v3
         with:
           node-version: 18.14.0
