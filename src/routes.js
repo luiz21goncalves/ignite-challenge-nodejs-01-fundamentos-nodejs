@@ -32,7 +32,13 @@ export const routes = [
     method: 'GET',
     path: buildRoutePath(ROUTES.TASK),
     handler: (request, response) => {
-      const tasks = database.select(TABLE_NAMES.TASKS)
+      const search = request.query?.search
+
+      const searchParams = search
+        ? { title: search, description: search }
+        : undefined
+
+      const tasks = database.select(TABLE_NAMES.TASKS, searchParams)
 
       return response.end(JSON.stringify(tasks))
     },
