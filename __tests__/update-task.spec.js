@@ -33,7 +33,9 @@ describe('Update task', () => {
       description: UPDATED_DESCRIPTION,
     })
 
-    const { body: updatedTasks } = await supertest(app).get(ROUTES.TASK)
+    const { body: updatedTasks, statusCode } = await supertest(app).get(
+      ROUTES.TASK,
+    )
     const updatedTask = updatedTasks[0]
 
     expect(updatedTask).toStrictEqual({
@@ -45,6 +47,7 @@ describe('Update task', () => {
       updated_at: expect.any(String),
     })
     expect(updatedTask.updated_at).not.toEqual(task.updated_at)
+    expect(statusCode).toEqual(204)
   })
 
   it('should be able to update only the field title of a task', async () => {
@@ -65,7 +68,9 @@ describe('Update task', () => {
       title: UPDATED_TITLE,
     })
 
-    const { body: updatedTasks } = await supertest(app).get(ROUTES.TASK)
+    const { body: updatedTasks, statusCode } = await supertest(app).get(
+      ROUTES.TASK,
+    )
     const updatedTask = updatedTasks[0]
 
     expect(updatedTask).toStrictEqual({
@@ -77,6 +82,7 @@ describe('Update task', () => {
       updated_at: expect.any(String),
     })
     expect(updatedTask.updated_at).not.toEqual(task.updated_at)
+    expect(statusCode).toEqual(204)
   })
 
   it('should be able to update only the field description of a task', async () => {
@@ -97,7 +103,9 @@ describe('Update task', () => {
       description: UPDATED_DESCRIPTION,
     })
 
-    const { body: updatedTasks } = await supertest(app).get(ROUTES.TASK)
+    const { body: updatedTasks, statusCode } = await supertest(app).get(
+      ROUTES.TASK,
+    )
     const updatedTask = updatedTasks[0]
 
     expect(updatedTask).toStrictEqual({
@@ -109,6 +117,7 @@ describe('Update task', () => {
       updated_at: expect.any(String),
     })
     expect(updatedTask.updated_at).not.toEqual(task.updated_at)
+    expect(statusCode).toEqual(204)
   })
 
   it('should not be able to update a non-existent task', async () => {

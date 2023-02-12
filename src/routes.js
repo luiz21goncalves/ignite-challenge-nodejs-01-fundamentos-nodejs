@@ -55,7 +55,7 @@ export const routes = [
 
         database.update(TABLE_NAMES.TASKS, id, updatedTask)
 
-        return response.writeHead(200).end()
+        return response.writeHead(204).end()
       }
 
       return response
@@ -74,7 +74,7 @@ export const routes = [
       if (task) {
         database.delete(TABLE_NAMES.TASKS, id)
 
-        return response.writeHead(200).end()
+        return response.writeHead(204).end()
       }
 
       return response
