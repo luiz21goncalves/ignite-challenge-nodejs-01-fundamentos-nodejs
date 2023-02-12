@@ -12,10 +12,12 @@
     "test:ci": "pnpm run test:cov",
     "test:cov": "vitest run --coverage",
     "dev": "node --watch src/server.js",
+    "stream": "node --watch streams/import-csv.js",
     "lint": "eslint . --ext .js",
     "lint:fix": "eslint . --ext .js --fix"
   },
   "dependencies": {
+    "csv-parse": "^5.3.5",
     "dotenv": "^16.0.3"
   },
   "devDependencies": {
