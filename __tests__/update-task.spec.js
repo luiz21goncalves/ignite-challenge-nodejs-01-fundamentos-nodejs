@@ -135,8 +135,6 @@ describe('Update task', () => {
     const { body: tasks } = await supertest(app).get(ROUTES.TASK)
     const task = tasks[0]
 
-    console.log({ task })
-
     const response = await supertest(app)
       .put(`${ROUTES.TASK}/${task.id}`)
       .send({})

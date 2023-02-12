@@ -64,6 +64,25 @@ export const routes = [
     },
   },
   {
+    method: 'DELETE',
+    path: buildRoutePath(`${ROUTES.TASK}/:id`),
+    handler: (request, response) => {
+      const { id } = request.params
+
+      const [task] = database.select(TABLE_NAMES.TASKS, { id })
+
+      if (task) {
+        database.delete(TABLE_NAMES.TASKS, id)
+
+        return response.writeHead(200).end()
+      }
+
+      return response
+        .writeHead(400)
+        .end(JSON.stringify({ message: 'Task not found.' }))
+    },
+  },
+  {
     method: 'GET',
     path: buildRoutePath(ROUTES.TASK),
     handler: (request, response) => {
