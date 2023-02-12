@@ -97,4 +97,27 @@ export const routes = [
       return response.end(JSON.stringify(tasks))
     },
   },
+  {
+    method: 'PATCH',
+    path: buildRoutePath(`${ROUTES.TASK}/:id/complete`),
+    handler: (request, response) => {
+      const { id } = request.params
+
+      const [task] = database.select(TABLE_NAMES.TASKS, { id })
+
+      if (task) {
+        database.update(TABLE_NAMES.TASKS, id, {
+          ...task,
+          completed_at: task.completed_at === null ? new Date() : null,
+          updated_at: new Date(),
+        })
+
+        return response.writeHead(204).end()
+      }
+
+      return response
+        .writeHead(400)
+        .end(JSON.stringify({ message: 'Task not found.' }))
+    },
+  },
 ]
