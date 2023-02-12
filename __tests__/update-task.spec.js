@@ -28,14 +28,14 @@ describe('Update task', () => {
     const { body: tasks } = await supertest(app).get(ROUTES.TASK)
     const task = tasks[0]
 
-    await supertest(app).put(`${ROUTES.TASK}/${task.id}`).send({
-      title: UPDATED_TITLE,
-      description: UPDATED_DESCRIPTION,
-    })
+    const { statusCode } = await supertest(app)
+      .put(`${ROUTES.TASK}/${task.id}`)
+      .send({
+        title: UPDATED_TITLE,
+        description: UPDATED_DESCRIPTION,
+      })
 
-    const { body: updatedTasks, statusCode } = await supertest(app).get(
-      ROUTES.TASK,
-    )
+    const { body: updatedTasks } = await supertest(app).get(ROUTES.TASK)
     const updatedTask = updatedTasks[0]
 
     expect(updatedTask).toStrictEqual({
@@ -64,13 +64,13 @@ describe('Update task', () => {
     const { body: tasks } = await supertest(app).get(ROUTES.TASK)
     const task = tasks[0]
 
-    await supertest(app).put(`${ROUTES.TASK}/${task.id}`).send({
-      title: UPDATED_TITLE,
-    })
+    const { statusCode } = await supertest(app)
+      .put(`${ROUTES.TASK}/${task.id}`)
+      .send({
+        title: UPDATED_TITLE,
+      })
 
-    const { body: updatedTasks, statusCode } = await supertest(app).get(
-      ROUTES.TASK,
-    )
+    const { body: updatedTasks } = await supertest(app).get(ROUTES.TASK)
     const updatedTask = updatedTasks[0]
 
     expect(updatedTask).toStrictEqual({
@@ -99,13 +99,13 @@ describe('Update task', () => {
     const { body: tasks } = await supertest(app).get(ROUTES.TASK)
     const task = tasks[0]
 
-    await supertest(app).put(`${ROUTES.TASK}/${task.id}`).send({
-      description: UPDATED_DESCRIPTION,
-    })
+    const { statusCode } = await supertest(app)
+      .put(`${ROUTES.TASK}/${task.id}`)
+      .send({
+        description: UPDATED_DESCRIPTION,
+      })
 
-    const { body: updatedTasks, statusCode } = await supertest(app).get(
-      ROUTES.TASK,
-    )
+    const { body: updatedTasks } = await supertest(app).get(ROUTES.TASK)
     const updatedTask = updatedTasks[0]
 
     expect(updatedTask).toStrictEqual({
