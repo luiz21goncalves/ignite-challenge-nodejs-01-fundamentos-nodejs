@@ -29,6 +29,41 @@ export const routes = [
     },
   },
   {
+    method: 'PUT',
+    path: buildRoutePath(`${ROUTES.TASK}/:id`),
+    handler: (request, response) => {
+      const { id } = request.params
+      const { title = undefined, description = undefined } = request.body
+
+      if (!title && !description) {
+        return response.writeHead(400).end(
+          JSON.stringify({
+            message: 'Send a title or description to update a task.',
+          }),
+        )
+      }
+
+      const [task] = database.select(TABLE_NAMES.TASKS, { id })
+
+      if (task) {
+        const updatedTask = {
+          ...task,
+          title: title || task?.title,
+          description: description || task?.description,
+          updated_at: new Date(),
+        }
+
+        database.update(TABLE_NAMES.TASKS, id, updatedTask)
+
+        return response.writeHead(200).end()
+      }
+
+      return response
+        .writeHead(400)
+        .end(JSON.stringify({ message: 'Task not found.' }))
+    },
+  },
+  {
     method: 'GET',
     path: buildRoutePath(ROUTES.TASK),
     handler: (request, response) => {
