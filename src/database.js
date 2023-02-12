@@ -1,6 +1,6 @@
 import fs from 'node:fs/promises'
 
-import { ENV } from './constants/env'
+import { ENV } from './constants/env.js'
 
 export class Database {
   #database = {}
@@ -27,6 +27,12 @@ export class Database {
     }
 
     this.#persist()
+
+    return data
+  }
+
+  select(table) {
+    const data = this.#database[table] ?? []
 
     return data
   }

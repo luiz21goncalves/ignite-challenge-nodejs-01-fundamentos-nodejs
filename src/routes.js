@@ -1,7 +1,8 @@
 import { randomUUID } from 'node:crypto'
 
 import { Database } from './database.js'
-import { ROUTES } from './constants/routes'
+import { ROUTES } from './constants/routes.js'
+import { TABLE_NAMES } from './constants/table-names.js'
 
 const database = new Database()
 
@@ -21,9 +22,18 @@ export const routes = [
         updated_at: new Date(),
       }
 
-      database.inset('tasks', task)
+      database.inset(TABLE_NAMES.TASKS, task)
 
       return response.writeHead(201).end()
+    },
+  },
+  {
+    method: 'GET',
+    path: ROUTES.TASK,
+    handler: (request, response) => {
+      const tasks = database.select(TABLE_NAMES.TASKS)
+
+      return response.end(JSON.stringify(tasks))
     },
   },
 ]
